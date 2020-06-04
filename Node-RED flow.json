@@ -1,0 +1,208 @@
+[
+    {
+        "id": "961e66c4.2c9758",
+        "type": "ui_form",
+        "z": "cb524968.5c3848",
+        "name": "",
+        "label": "",
+        "group": "fe259d25.6b80b",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "options": [
+            {
+                "label": "Year",
+                "value": "a",
+                "type": "number",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Status",
+                "value": "b",
+                "type": "number",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Adult Mortality",
+                "value": "c",
+                "type": "number",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Infant Deaths",
+                "value": "d",
+                "type": "number",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Alcohol",
+                "value": "e",
+                "type": "number",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Percentage Expenditure",
+                "value": "f",
+                "type": "text",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Hepatitis B",
+                "value": "g",
+                "type": "text",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Measles",
+                "value": "h",
+                "type": "text",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "BMI",
+                "value": "i",
+                "type": "text",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Under-Five Deaths",
+                "value": "j",
+                "type": "text",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Polio",
+                "value": "k",
+                "type": "text",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Total Expenditure",
+                "value": "l",
+                "type": "text",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Diphtheria",
+                "value": "m",
+                "type": "text",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "HIV/AIDS",
+                "value": "n",
+                "type": "text",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "GDP",
+                "value": "o",
+                "type": "text",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Population",
+                "value": "p",
+                "type": "text",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Thinness 1-19 years",
+                "value": "q",
+                "type": "text",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Thinness 5-9 years",
+                "value": "r",
+                "type": "text",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Income Composition of Resources",
+                "value": "s",
+                "type": "text",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Schooling",
+                "value": "t",
+                "type": "text",
+                "required": true,
+                "rows": null
+            }
+        ],
+        "formValue": {
+            "a": "",
+            "b": "",
+            "c": "",
+            "d": "",
+            "e": "",
+            "f": "",
+            "g": "",
+            "h": "",
+            "i": "",
+            "j": "",
+            "k": "",
+            "l": "",
+            "m": "",
+            "n": "",
+            "o": "",
+            "p": "",
+            "q": "",
+            "r": "",
+            "s": "",
+            "t": ""
+        },
+        "payload": "",
+        "submit": "submit",
+        "cancel": "cancel",
+        "topic": "",
+        "x": 70,
+        "y": 100,
+        "wires": [
+            [
+                "1b39df48.118d31"
+            ]
+        ]
+    },
+    {
+        "id": "fe259d25.6b80b",
+        "type": "ui_group",
+        "z": "",
+        "name": "Predicting Life Expectancy",
+        "tab": "2bd7afb.b38cf5",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "2bd7afb.b38cf5",
+        "type": "ui_tab",
+        "z": "",
+        "name": "Home",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]
