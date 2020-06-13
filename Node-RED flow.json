@@ -11,6 +11,13 @@
         "height": 0,
         "options": [
             {
+                "label": "Country",
+                "value": "u",
+                "type": "text",
+                "required": false,
+                "rows": null
+            },
+            {
                 "label": "Year",
                 "value": "a",
                 "type": "number",
@@ -18,7 +25,7 @@
                 "rows": null
             },
             {
-                "label": "Status",
+                "label": "Status           (0->Developing, 1->Developed)",
                 "value": "b",
                 "type": "number",
                 "required": true,
@@ -152,6 +159,7 @@
             }
         ],
         "formValue": {
+            "u": "",
             "a": "",
             "b": "",
             "c": "",
@@ -177,13 +185,150 @@
         "submit": "submit",
         "cancel": "cancel",
         "topic": "",
-        "x": 70,
+        "x": 98,
         "y": 100,
         "wires": [
             [
                 "1b39df48.118d31"
             ]
         ]
+    },
+    {
+        "id": "1b39df48.118d31",
+        "type": "function",
+        "z": "cb524968.5c3848",
+        "name": "pre token",
+        "func": "//make user given values as global variables\nglobal.set(\"u\",msg.payload.u);\nglobal.set(\"a\",msg.payload.a);\nglobal.set(\"b\",msg.payload.b);\nglobal.set(\"c\",msg.payload.c);\nglobal.set(\"d\",msg.payload.d);\nglobal.set(\"e\",msg.payload.e);\nglobal.set(\"f\",msg.payload.f);\nglobal.set(\"g\",msg.payload.g);\nglobal.set(\"h\",msg.payload.h);\nglobal.set(\"i\",msg.payload.i);\nglobal.set(\"j\",msg.payload.j);\nglobal.set(\"k\",msg.payload.k);\nglobal.set(\"l\",msg.payload.l);\nglobal.set(\"m\",msg.payload.m);\nglobal.set(\"n\",msg.payload.n);\nglobal.set(\"o\",msg.payload.o);\nglobal.set(\"p\",msg.payload.p);\nglobal.set(\"q\",msg.payload.q);\nglobal.set(\"r\",msg.payload.r);\nglobal.set(\"s\",msg.payload.s);\nglobal.set(\"t\",msg.payload.t);\n\n\n//following are required to receive a token\nvar apikey=\"-_IPpjho748KEj4EtZIxQhqnSAaK8o--F0AU3XfVrP8k\";\nmsg.headers={\"content-type\":\"application/x-www-form-urlencoded\"};\nmsg.payload={\"grant_type\":\"urn:ibm:params:oauth:grant-type:apikey\",\"apikey\":apikey};\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 248,
+        "y": 100,
+        "wires": [
+            [
+                "db90c7cc.d16568"
+            ]
+        ]
+    },
+    {
+        "id": "7fa179e5.8d6c68",
+        "type": "http request",
+        "z": "cb524968.5c3848",
+        "name": "",
+        "method": "POST",
+        "ret": "obj",
+        "paytoqs": false,
+        "url": "https://eu-gb.ml.cloud.ibm.com/v3/wml_instances/e7139cae-44e8-4edd-99c4-7e2ffa75eb5a/deployments/6f2b338c-2461-4da5-98df-38dec57111e4/online",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 498,
+        "y": 180,
+        "wires": [
+            [
+                "2bd5646d.b77fec",
+                "124f62c4.f8b43d"
+            ]
+        ]
+    },
+    {
+        "id": "feba2d7.d6809d",
+        "type": "debug",
+        "z": "cb524968.5c3848",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 762,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "124f62c4.f8b43d",
+        "type": "function",
+        "z": "cb524968.5c3848",
+        "name": "getFrom Endpoint",
+        "func": "msg.payload=msg.payload.values[0][0];\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 518,
+        "y": 280,
+        "wires": [
+            [
+                "feba2d7.d6809d",
+                "ae6c18f.c0670e8"
+            ]
+        ]
+    },
+    {
+        "id": "2bd5646d.b77fec",
+        "type": "debug",
+        "z": "cb524968.5c3848",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 722,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "1613c65f.fda49a",
+        "type": "function",
+        "z": "cb524968.5c3848",
+        "name": "sendTo Endpoint",
+        "func": "//get token and make headers\nvar token=msg.payload.access_token;\nvar instance_id=\"e7139cae-44e8-4edd-99c4-7e2ffa75eb5a\"\nmsg.headers={'Content-Type': 'application/json',\"Authorization\":\"Bearer \"+token,\"ML-Instance-ID\":instance_id}\n\n//get variables that are set earlier\nvar u = global.get(\"u\");\nvar a = global.get(\"a\");\nvar b = global.get(\"b\");\nvar c = global.get(\"c\");\nvar d = global.get(\"d\");\nvar e = global.get(\"e\");\nvar f = global.get(\"f\");\nvar g = global.get(\"g\");\nvar h = global.get(\"h\");\nvar i = global.get(\"i\");\nvar j = global.get(\"j\");\nvar k = global.get(\"k\");\nvar l = global.get(\"l\");\nvar m = global.get(\"m\");\nvar n = global.get(\"n\");\nvar o = global.get(\"o\");\nvar p = global.get(\"p\");\nvar q = global.get(\"q\");\nvar r = global.get(\"r\");\nvar s = global.get(\"s\");\nvar t = global.get(\"t\");\n\n\n//send the user values to service endpoint\nmsg.payload = \n{\"fields\":[\"Year\", \"Status\", \"Adult Mortality\",\n       \"Infant Deaths\", \"Alcohol\", \"Percentage Expenditure\", \"Hepatitis B\",\n       \"Measles\", \"BMI\", \"Under-Five Deaths\", \"Polio\", \"Total Expenditure\",\n       \"Diphtheria\", \"HIV/AIDS\", \"GDP\", \"Population\",\n       \"Thinness  1-19 years\", \"Thinness 5-9 years\", \n       \"Income Composition of Resources\", \"Schooling\"],\n\"values\":[[a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t]]};\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 238,
+        "y": 180,
+        "wires": [
+            [
+                "7fa179e5.8d6c68"
+            ]
+        ]
+    },
+    {
+        "id": "db90c7cc.d16568",
+        "type": "http request",
+        "z": "cb524968.5c3848",
+        "name": "",
+        "method": "POST",
+        "ret": "obj",
+        "paytoqs": false,
+        "url": "https://iam.cloud.ibm.com/identity/token",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "basic",
+        "x": 418,
+        "y": 100,
+        "wires": [
+            [
+                "1613c65f.fda49a"
+            ]
+        ]
+    },
+    {
+        "id": "ae6c18f.c0670e8",
+        "type": "ui_text",
+        "z": "cb524968.5c3848",
+        "group": "fe259d25.6b80b",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Prediction",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "x": 732,
+        "y": 400,
+        "wires": []
     },
     {
         "id": "fe259d25.6b80b",
